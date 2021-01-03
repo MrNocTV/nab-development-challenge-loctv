@@ -1,0 +1,46 @@
+version: "3.4"
+
+services:
+  account-database:
+    image: postgres:11.5-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=account
+      - POSTGRES_DB=account-db
+    volumes:
+      - ./postgresql-account:/var/lib/postgresql/data
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
+  
+  prepaid-database:
+    image: postgres:11.5-alpine
+    ports:
+      - 5431:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=prepaid
+      - POSTGRES_DB=prepaid-db
+    volumes:
+      - ./postgresql-prepaid:/var/lib/postgresql/data
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
