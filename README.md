@@ -566,6 +566,9 @@ Note: Unnecessary use of -X or --request, GET is already inferred.
 Cannot get account
 ```
 
+## Run Tests
+- For testing, simply go in to each Spring Boot project (account service, prepaid data service, voucher service) and run `mvn test`
+
 ## Troubleshoot
 - Please contact me directly or add an issue.
 
