@@ -71,6 +71,7 @@ public class PrepaidDataController {
             @RequestBody @Valid GetTokenRequestModel getTokenRequestModel,
             @RequestParam(name = "timeout", required = false, defaultValue = "300") Integer timeout) {
 
+        accountServiceClient.getAccountByPhoneNumber(getTokenRequestModel.getPhoneNumber());
         ViewTokenDTO vouchersViewToken = voucherService.getVouchersViewToken(getTokenRequestModel, timeout);
 
         return new ResponseEntity<>(vouchersViewToken, HttpStatus.OK);
